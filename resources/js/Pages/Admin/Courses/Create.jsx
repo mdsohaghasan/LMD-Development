@@ -1,0 +1,54 @@
+import React, { useState } from 'react';
+import AppLayout from '@/Layouts/AppLayout';
+import AdminSidebar from '@/Layouts/AdminSidebar';
+import { useForm, Link } from '@inertiajs/react';
+
+export default function CreateCourse() {
+  const { data, setData, post, processing, errors } = useForm({
+    title: '',
+    description: '',
+    teacher_id: '',
+    is_published: false,
+  });
+
+  const handleSubmit = (e) => {
+    e.preventDefault();
+    post('/admin/courses');
+  };
+
+  return (
+    <AppLayout>
+      <div className="flex">
+        <AdminSidebar />
+        <div className="flex-1 p-8">
+          <h1 className="text-2xl font-bold mb-6">Create Course</h1>
+          <form onSubmit={handleSubmit} className="space-y-4 max-w-lg">
+            <div>
+              <label className="block mb-1">Title</label>
+              <input type="text" className="w-full border rounded p-2" value={data.title} onChange={e => setData('title', e.target.value)} />
+              {errors.title && <div className="text-red-600 text-sm">{errors.title}</div>}
+            </div>
+            <div>
+              <label className="block mb-1">Description</label>
+              <textarea className="w-full border rounded p-2" value={data.description} onChange={e => setData('description', e.target.value)} />
+              {errors.description && <div className="text-red-600 text-sm">{errors.description}</div>}
+            </div>
+            <div>
+              <label className="block mb-1">Teacher ID</label>
+              <input type="number" className="w-full border rounded p-2" value={data.teacher_id} onChange={e => setData('teacher_id', e.target.value)} />
+              {errors.teacher_id && <div className="text-red-600 text-sm">{errors.teacher_id}</div>}
+            </div>
+            <div className="flex items-center gap-2">
+              <input type="checkbox" checked={data.is_published} onChange={e => setData('is_published', e.target.checked)} />
+              <label>Published</label>
+            </div>
+            <div className="flex gap-2">
+              <button type="submit" className="px-4 py-2 bg-blue-600 text-white rounded" disabled={processing}>Create</button>
+              <Link href="/admin/courses" className="px-4 py-2 bg-gray-200 rounded">Cancel</Link>
+            </div>
+          </form>
+        </div>
+      </div>
+    </AppLayout>
+  );
+}

@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'dashboard' => 'ড্যাশবোর্ড',
+    'admin_dashboard' => 'অ্যাডমিন ড্যাশবোর্ড',
+    'teacher_dashboard' => 'শিক্ষক ড্যাশবোর্ড',
+    'student_dashboard' => 'শিক্ষার্থী ড্যাশবোর্ড',
+    'total_students' => 'মোট শিক্ষার্থী',
+    'total_teachers' => 'মোট শিক্ষক',
+    'total_courses' => 'মোট কোর্স',
+    'total_enrollments' => 'মোট নথিভুক্তি',
+    'enrolled_courses' => 'নথিভুক্ত কোর্স',
+    'my_courses' => 'আমার কোর্স',
+    'quick_actions' => 'দ্রুত পদক্ষেপ',
+    'manage_users' => 'ব্যবহারকারী পরিচালনা করুন',
+    'manage_courses' => 'কোর্স পরিচালনা করুন',
+    'view_reports' => 'রিপোর্ট দেখুন',
+    'create_new_course' => 'নতুন কোর্স তৈরি করুন',
+    'create_lesson' => 'পাঠ তৈরি করুন',
+    'create_quiz' => 'কুইজ তৈরি করুন',
+    'send_announcement' => 'ঘোষণা পাঠান',
+    'your_courses' => 'আপনার কোর্স',
+    'course_progress' => 'কোর্স অগ্রগতি',
+    'continue_learning' => 'শেখা চালিয়ে যান',
+    'recent_activity' => 'সম্প্রতি কার্যকলাপ',
+    'no_courses' => 'এখনও কোন কোর্স নেই',
+    'logout' => 'লগ আউট',
+];

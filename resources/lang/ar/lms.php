@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'dashboard' => 'لوحة التحكم',
+    'admin_dashboard' => 'لوحة تحكم المسؤول',
+    'teacher_dashboard' => 'لوحة تحكم المعلم',
+    'student_dashboard' => 'لوحة تحكم الطالب',
+    'total_students' => 'إجمالي الطلاب',
+    'total_teachers' => 'إجمالي المعلمين',
+    'total_courses' => 'إجمالي الدورات',
+    'total_enrollments' => 'إجمالي التسجيلات',
+    'enrolled_courses' => 'الدورات المسجلة',
+    'my_courses' => 'دوراتي',
+    'quick_actions' => 'إجراءات سريعة',
+    'manage_users' => 'إدارة المستخدمين',
+    'manage_courses' => 'إدارة الدورات',
+    'view_reports' => 'عرض التقارير',
+    'create_new_course' => 'إنشاء دورة جديدة',
+    'create_lesson' => 'إنشاء درس',
+    'create_quiz' => 'إنشاء اختبار',
+    'send_announcement' => 'إرسال إعلان',
+    'your_courses' => 'دوراتك',
+    'course_progress' => 'تقدم الدورة',
+    'continue_learning' => 'متابعة التعلم',
+    'recent_activity' => 'النشاط الأخير',
+    'no_courses' => 'لا توجد دورات حتى الآن',
+    'logout' => 'تسجيل الخروج',
+];

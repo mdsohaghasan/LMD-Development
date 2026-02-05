@@ -1,0 +1,28 @@
+<?php
+
+return [
+    'dashboard' => 'Dashboard',
+    'admin_dashboard' => 'Admin Dashboard',
+    'teacher_dashboard' => 'Teacher Dashboard',
+    'student_dashboard' => 'Student Dashboard',
+    'total_students' => 'Total Students',
+    'total_teachers' => 'Total Teachers',
+    'total_courses' => 'Total Courses',
+    'total_enrollments' => 'Total Enrollments',
+    'enrolled_courses' => 'Enrolled Courses',
+    'my_courses' => 'My Courses',
+    'quick_actions' => 'Quick Actions',
+    'manage_users' => 'Manage Users',
+    'manage_courses' => 'Manage Courses',
+    'view_reports' => 'View Reports',
+    'create_new_course' => 'Create New Course',
+    'create_lesson' => 'Create Lesson',
+    'create_quiz' => 'Create Quiz',
+    'send_announcement' => 'Send Announcement',
+    'your_courses' => 'Your Courses',
+    'course_progress' => 'Course Progress',
+    'continue_learning' => 'Continue Learning',
+    'recent_activity' => 'Recent Activity',
+    'no_courses' => 'No courses yet',
+    'logout' => 'Logout',
+];
