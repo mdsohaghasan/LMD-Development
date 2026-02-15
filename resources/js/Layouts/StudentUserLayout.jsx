@@ -1,11 +1,29 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { Link, usePage, router } from '@inertiajs/react'
-import { useForm } from '@inertiajs/react'
 
 export default function StudentUserLayout({ children }) {
-    const { auth } = usePage().props
+    const { auth, url } = usePage().props
     const [activeTab, setActiveTab] = useState('dashboard')
     const user = auth.user
+    
+    // Update active tab when URL changes
+    useEffect(() => {
+        const currentPath = url.replace(/\/$/, '')
+        const activeItem = menuItems.find(item => {
+            const itemPath = item.href.replace(/\/$/, '')
+            return currentPath === itemPath || 
+                   (item.id === 'dashboard' && (currentPath === '/student' || currentPath === '/user')) ||
+                   (item.id === 'courses' && (currentPath.startsWith('/student/courses') || currentPath.startsWith('/user/courses'))) ||
+                   (item.id === 'quizzes' && currentPath.startsWith('/student/quizzes')) ||
+                   (item.id === 'orders' && (currentPath.startsWith('/student/orders') || currentPath.startsWith('/user/orders'))) ||
+                   (item.id === 'wishlist' && currentPath.startsWith('/user/wishlist')) ||
+                   (item.id === 'qa' && (currentPath.startsWith('/student/support') || currentPath.startsWith('/user/support'))) ||
+                   (item.id === 'profile' && (currentPath.startsWith('/student/profile') || currentPath.startsWith('/user/profile')))
+        })
+        if (activeItem) {
+            setActiveTab(activeItem.id)
+        }
+    }, [url])
 
     const getInitials = (name) => {
         if (!name) return 'U'
@@ -54,9 +72,10 @@ export default function StudentUserLayout({ children }) {
                         {/* Navigation Menu */}
                         <nav className="space-y-1">
                             {menuItems.map((item) => {
-                                const currentPath = window.location.pathname
-                                const isActive = currentPath === item.href || 
-                                               (item.id === 'dashboard' && (currentPath === '/student' || currentPath === '/user' || currentPath === '/student/' || currentPath === '/user/')) ||
+                                const currentPath = (url || window.location.pathname).replace(/\/$/, '')
+                                const itemPath = item.href.replace(/\/$/, '')
+                                const isActive = currentPath === itemPath || 
+                                               (item.id === 'dashboard' && (currentPath === '/student' || currentPath === '/user')) ||
                                                (item.id === 'courses' && (currentPath.startsWith('/student/courses') || currentPath.startsWith('/user/courses'))) ||
                                                (item.id === 'quizzes' && currentPath.startsWith('/student/quizzes')) ||
                                                (item.id === 'orders' && (currentPath.startsWith('/student/orders') || currentPath.startsWith('/user/orders'))) ||

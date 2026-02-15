@@ -1,14 +1,10 @@
 import React from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import AdminSidebar from '@/Layouts/AdminSidebar';
-import { Link, usePage } from '@inertiajs/react';
+import AdminTeacherLayout from '@/Layouts/AdminTeacherLayout';
+import { Link } from '@inertiajs/react';
 
 export default function CoursesIndex({ courses }) {
   return (
-    <AppLayout>
-      <div className="flex">
-        <AdminSidebar />
-        <div className="flex-1 p-8">
+    <AdminTeacherLayout role="admin">
           <div className="flex justify-between items-center mb-6">
             <h1 className="text-2xl font-bold">Courses</h1>
             <Link href="/admin/courses/create" className="px-4 py-2 bg-blue-600 text-white rounded">Create Course</Link>
@@ -35,8 +31,6 @@ export default function CoursesIndex({ courses }) {
               ))}
             </tbody>
           </table>
-        </div>
-      </div>
-    </AppLayout>
+    </AdminTeacherLayout>
   );
 }

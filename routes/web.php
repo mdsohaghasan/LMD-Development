@@ -48,7 +48,14 @@ Route::middleware('auth')->group(function () {
         return Inertia::render('Dashboard');
     })->name('dashboard');
 
-    Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
+    // Profile routes (legacy - redirects to role-specific profiles)
+    Route::get('/profile', function() {
+        $user = auth()->user();
+        if ($user->isAdmin()) return redirect()->route('admin.dashboard');
+        if ($user->isTeacher()) return redirect()->route('teacher.dashboard');
+        if ($user->isStudent()) return redirect()->route('student.profile');
+        return redirect()->route('user.profile');
+    })->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
@@ -165,6 +172,19 @@ Route::middleware(['auth', \App\Http\Middleware\StudentMiddleware::class])->pref
     // Support
     Route::get('/support', [StudentController::class, 'support'])->name('support');
     Route::post('/support', [StudentController::class, 'createSupportTicket'])->name('support.create');
+    
+    // Profile
+    Route::get('/profile', function() {
+        $student = auth()->user();
+        return \Inertia\Inertia::render('Student/Profile', [
+            'user' => $student->only('id', 'name', 'email', 'avatar', 'phone', 'bio'),
+        ]);
+    })->name('profile');
+    
+    // Settings
+    Route::get('/settings', function() {
+        return \Inertia\Inertia::render('User/Settings');
+    })->name('settings');
 });
 
 // Normal user routes - Strict: Only 'user' role
@@ -175,6 +195,11 @@ Route::middleware(['auth'])->prefix('user')->name('user.')->group(function () {
     Route::get('/profile', [App\Http\Controllers\UserController::class, 'profile'])->name('profile');
     Route::patch('/profile', [App\Http\Controllers\UserController::class, 'updateProfile'])->name('profile.update');
     Route::patch('/password', [App\Http\Controllers\UserController::class, 'updatePassword'])->name('password.update');
+    
+    // Settings
+    Route::get('/settings', function() {
+        return \Inertia\Inertia::render('User/Settings');
+    })->name('settings');
     
     // Browse courses
     Route::get('/courses', [App\Http\Controllers\UserController::class, 'browseCourses'])->name('courses.browse');

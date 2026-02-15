@@ -36,7 +36,18 @@ class AdminController extends Controller
         ];
 
         // Recent activity
-        $recentActivity = ActivityLog::with('user')->latest()->take(10)->get();
+        $recentActivity = ActivityLog::with('user')->latest()->take(10)->get()->map(function($log) {
+            return [
+                'id' => $log->id,
+                'action' => $log->action,
+                'description' => $log->description,
+                'created_at' => $log->created_at,
+                'user' => $log->user ? [
+                    'id' => $log->user->id,
+                    'name' => $log->user->name,
+                ] : null,
+            ];
+        });
 
         return Inertia::render('Admin/Dashboard', [
             'stats' => $stats,

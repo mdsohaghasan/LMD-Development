@@ -43,7 +43,14 @@ class TeacherController extends Controller
         ];
 
         return Inertia::render('Teacher/Dashboard', [
-            'courses' => $courses,
+            'courses' => $courses->map(function($course) {
+                return [
+                    'id' => $course->id,
+                    'title' => $course->title,
+                    'description' => $course->description,
+                    'enrollments_count' => $course->enrollments_count,
+                ];
+            }),
             'stats' => $stats,
         ]);
     }

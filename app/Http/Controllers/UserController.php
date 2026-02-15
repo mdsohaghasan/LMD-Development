@@ -45,6 +45,11 @@ class UserController extends Controller
     {
         $user = Auth::user();
         
+        // Ensure only 'user' role can access
+        if ($user->role !== 'user') {
+            return redirect()->route('dashboard');
+        }
+        
         return Inertia::render('User/Profile', [
             'user' => $user->only('id', 'name', 'email', 'avatar', 'phone', 'bio'),
         ]);

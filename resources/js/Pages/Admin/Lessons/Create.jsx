@@ -1,6 +1,5 @@
-import React, { useState } from 'react';
-import AppLayout from '@/Layouts/AppLayout';
-import AdminSidebar from '@/Layouts/AdminSidebar';
+import React from 'react';
+import AdminTeacherLayout from '@/Layouts/AdminTeacherLayout';
 import { useForm, Link } from '@inertiajs/react';
 
 export default function CreateLesson({ course }) {
@@ -17,10 +16,7 @@ export default function CreateLesson({ course }) {
   };
 
   return (
-    <AppLayout>
-      <div className="flex">
-        <AdminSidebar />
-        <div className="flex-1 p-8">
+    <AdminTeacherLayout role="admin">
           <h1 className="text-2xl font-bold mb-6">Add Lesson to {course.title}</h1>
           <form onSubmit={handleSubmit} className="space-y-4 max-w-lg">
             <div>
@@ -53,8 +49,6 @@ export default function CreateLesson({ course }) {
               <Link href={`/admin/courses/${course.id}/lessons`} className="px-4 py-2 bg-gray-200 rounded">Cancel</Link>
             </div>
           </form>
-        </div>
-      </div>
-    </AppLayout>
+    </AdminTeacherLayout>
   );
 }
